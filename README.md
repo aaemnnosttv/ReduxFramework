@@ -74,6 +74,45 @@ Send me an email at ghost1227@reduxframework.com so I can add you to our user sp
 
 ### Master ###
 
+= 3.1.9.12 =
+* Fixed:      Default_show display error with a non-array being steralized.
+* Added:      Multiple required parent value checking! Booya!
+* Fixed:      Sections now fold with required.
+
+= 3.1.9.11 =
+* Fixed:      select2 not rendering properly when dev_mode = false, because of ace_editor fix.
+* Fixed:      Removed mistakenly compiled test code from redux.js.
+
+= 3.1.9.10 =
+* Fixed:      ace_editor not rendering properly in certain instances.
+* Modified:   Small change to import_export field in checking for existing instance of itself.
+
+= 3.1.9.9 =
+* Fixed:      import_export not rendering when the menutype argument was set to menu
+
+= 3.1.9.8 =
+* Fixed:      Ace_editor not enqueued unless used. MEMORY HOG.
+
+= 3.1.9.7 =
+* Fixed:      Color_Gradient transparency to was being auto-selected if from way transparent.
+* Fixed:	  Enqueue select with slider for local dev.
+
+= 3.1.9.6 =
+* Modified:   removed add_submenu_page when creating a submenu for us in the WP admin area.  WP approved API is used in it's place to being Redux up to wp.org theme check standards.
+
+= 3.1.9.5 =
+* Fixed:      Massive speed issue with button_set. Resolved.
+* Fixed:      Issue where default values throws an error if ID is not set.
+
+= 3.1.9.4 =
+* Fixed:      Continuing effort to ensure proper loading of config from child themes.
+
+= 3.1.9.3 =
+* Fixed:      Import/Export array search bug if section['fields'] is not defined.
+
+= 3.1.9.2 =
+* Fixed:      Inconsistencies in import/export across different versions of PHP.
+
 = 3.1.9.1 =
 * Fixed:      Redux checks for child or parent theme exclusively before loading.
 
