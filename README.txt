@@ -1,10 +1,10 @@
 === Redux Framework ===
-Contributors: nohalfpixels, ghost1227, dovyp
+Contributors: nohalfpixels, ghost1227, dovyp, kprovance
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=N5AD7TSH8YA5U
 Tags: admin, admin interface, options, theme options, plugin options, options framework, settings
 Requires at least: 3.5.1
-Tested up to: 3.8
-Stable tag: 3.1.4
+Tested up to: 3.8.1
+Stable tag: 3.1.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -28,7 +28,7 @@ Don't take our word for it, check out our online demo and try Redux without inst
 
 
 = Docs & Support =
-You can find [docs](http://reduxframework.com/docs/), [FAQs](http://reduxframework.com/docs/) and more detailed information about ReduxFramework on [reduxframework.com](http://reduxframework.com). If you were unable to find the answer to your question on the [FAQs](http://reduxframework.com/docs/), or in any of the [documentation](http://reduxframework.com/docs/), you should search [the issue tracker on Github](https://github.com/ReduxFramework/ReduxFramework/issues). If you can't locate any topics that pertain to your particular issue, [post a new issue](https://github.com/ReduxFramework/ReduxFramework/issues/new) for it.
+We have extremely extensive docs. Please visit [http://docs.reduxframework.com/](http://docs.reduxframework.com/) If that doesn’t solve your concern, you should search [the issue tracker on Github](https://github.com/ReduxFramework/ReduxFramework/issues). If you can't locate any topics that pertain to your particular issue, [post a new issue](https://github.com/ReduxFramework/ReduxFramework/issues/new) for it. Before you submit an issue, please read [our contributing requirements](https://github.com/redux-framework/redux-framework/blob/master/CONTRIBUTING.md). We build off of the dev version and push to WordPress.org when all is confirmed stable and ready for release.
 
 
 = Redux Framework Needs Your Support =
@@ -36,25 +36,32 @@ It is hard to continue development and support for this free plugin without cont
 
 = Fields Types =
 
+* Background
 * Border
 * Button Set
 * Checkbox / Multi-Check
 * Color (WordPress Native)
-* Gradient
+* Color Gradient
+* Color RGBA
 * Date
 * Dimensions (Height/Width)
+* Divider
 * Editor (WordPress Native)
 * Gallery (WordPress Native)
-* Group (Repeatable/Non-Repeatable)
 * Image Select (Patterns/Presets)
 * Info (Header)
+* Import/Export
 * Link Color
 * Media (WordPress Native)
 * Multi-Text
 * Password
 * Radio (w/ WordPress Data)
+* Raw
+* Section
 * Select (Select/Multi-Select w/ Select2 & WordPress Data)
+* Select Image
 * Slider
+* Slides
 * Sortable (Drag/Drop Checkbox/Input Fields)
 * Sorter (Drag/Drop Manager - Works great for content blocks)
 * Spacing (Margin/Padding/Absolute)
@@ -117,7 +124,7 @@ On the Plugins page, beneith the description and an activated Redux Framework, y
 5. Modify the sample file to your heart's content.
 
 = For Complete Documentation and Examples =
-Visit: [http://reduxframework.com/docs/](http://reduxframework.com/docs/)
+Visit: [http://docs.reduxframework.com/](http://docs.reduxframework.com/)
 
 
 == Frequently Asked Questions ==
@@ -138,6 +145,118 @@ That's because the real FAQ section is on our site! Please visit [http://reduxfr
 1. This is the demo mode of Redux Framework. Activate it and you will find a fully-functional admin panel that you can play with. On the Plugins page, beneath the description and an activated Redux Framework, you will find a Demo Mode link. Click that link to activate or deactivate the sample-config file Redux ships with.  Don't take our word for it, check out our online demo and try Redux without installing a thing! [**http://demo.reduxframework.com/wp-admin/**](http://demo.reduxframework.com/wp-admin/)
 
 == Changelog ==
+
+= 3.1.9 =
+* Fixed:      Typography custom preview text/size not outputting.
+* Fixed:      No font selected in typography would default to 'inherit'.
+* Fixed:      Hint feature kicking back a notice if no title was specified.
+* Fixed:      Sortable field, when used a checkboxes, were all checked by default, even when set not to be.
+* Fixed:      button_set field not setting properly in multi mode.
+* Fixed:      Javascript console object not printing options object.
+* Fixed:      Load errors from child themes no longer occur.
+* Fixed:      Compiler output for slider field.
+* Fixed:      update_check produced a fatal error on a local install with no internet connection.
+* Fixed:      Compiler hook failing on slider.
+* Fixed:      Error on update_check when the response code was something other than 200.
+* Fixed:      image_select images not resizing properly in FF and IE.
+* Fixed:      Layout for the typography field, so everything isn't smushed together.  The new layout is as follows:
+* Fixed:      link_color field showing notice on default, if user enters no defaults.
+* Fixed:      Fixed tab notice in framework.php if no tab parameter is set in URL.
+* Fixed:      Hide demo hook wasn't hiding demo links.
+* Added:      Admin notice for new builds of Redux on Github as they become available.  This feature is available on in dev_mode, and may be turned off by setting the `update_notice` argument to false.  See the Arguments page of the wiki for more details.
+* Added:      text-transform option for the typography field.
+* Added:      Newsletter sign-up popup at first load of the Redux options panel.
+* Added:      Added PHP 5.2 support for import/export.
+* Added:      Action hooks for options reset and options reset section.
+* Added:      Theme responsive for date picker.
+* Added:      New slider.  Better looking UI, double handles and support for floating point values.  See the wiki for more info.
+* Added:      Typography improvements.
+* Added:      Hints!  More info:  https://github.com/ReduxFramework/ReduxFramework/wiki/Using-Hints-in-Fields
+* Added:      Complete Wordpress admin color styles. Blessed LESS/SCSS mixins.  ;)
+* Added:      Font family not required for the typography module any longer.
+* Added:      Support for using the divide field in folding.
+* Added:      Error trapping in typography.js for those still attempting to use typography with no font-family.
+* Added:      Full asynchronous font loading.
+* Added:      email_not_empty validation field.
+* Modified:   Typography word and letter spacing now accept negative values.
+* Modified:   Typography preview shows spaces between upper and lower case groupings.
+* Modified:   Google font CSS moved to header so pages will pass HTML5 validation.
+* Modified:   Removed Google font CSS line from header (because it's in the footer via wp_enqueue_style.
+* Modified:   RGBA Field stability.  Thank you, @SilverKenn.
+* Modified:   Separated Import/Export from the core.  It can now be used as a field.
+
+              [family-font] [backup-font]
+              [style] [script] [align] [transform]
+              [size] [height] [word space] [letter space]
+              [color]
+* Reverted:   email validation field only checks for valid email.  not_empty check moved to new validation field.
+
+= 3.1.8 =
+* Fixed:    Improper enqueue in tracking class.
+* Fixed:    Few classes missed for various fields.
+* Fixed:    Spacing field kicking back notices and warnings when 'output' wasn't set.
+* Modified: Added file_exists check to all include lines in framework.php
+* Fixed:    Background field now works with dynamic preview as it should.
+* Fixed:    Extension fields now enqueueing properly.
+* Added:    Text-align to typography field.
+* Fixed:    Servers returning forwards slashes in TEMPLATEPATH, while Redux is installed embedded would not show options menu.
+* Fixed:    On and Off for switch field not displaying language translation.
+* Fixed:    email validation allowing a blank field.
+* Fixed:    Now allow for empty values as valid keys.
+* Added:    Dismiss option to admin notices (internal function)
+
+= 3.1.7 =
+* Fixed:    Servers returning forwards slashes in TEMPLATEPATH, while Redux is installed embedded would not show options menu.
+* Fixed:    On and Off for switch field not displaying language translation.
+* Fixed:    email validation allowing a blank field.
+* Added:    Dismiss option to admin notices (internal function)
+* Fixed:    On and Off for switch field not displaying language translation.
+* Fixed:    email validation allowing a blank field.
+* Added:    Dismiss option to admin notices (internal function)
+
+= 3.1.6 =
+* Fixed:    CSS spacing issue
+* Fixed:    Customizer now works and doesn't break other customizer fields outside of Redux.
+* Fixed:    Several minor bug fixes
+* Added:    Metabox support via extension http://reduxframework.com/extensions/
+* Added:    Admin-bar menu
+* Fixed:    Section field now folds.
+* Fixed:    wp_content_dir path now handles double forward slashes.
+* Fixed:    Typography field missing italics in Google fonts.
+* Fixed:    Default color in border field not saving properly.
+* Fixed:    hex2rgba in class.redux_helpers.php changed to static.
+* Fixed:    'sortable' field type not saving options as default.
+* Fixed:    Specified default color not set when clicking the color box default button.
+* Fixed:    Sorter field options are now saved as default in database.
+* Fixed:    Issues with checkboxes displaying default values instead of labels.
+* Fixed:    Outstanding render issues with spacing field.
+* Fixed:    Plugins using Redux from load failure.
+* Fixed:    'not_empty' field validation.
+* Fixed:    Media field.
+* Added:    'read-only' option for media text field.
+* Added:    'mode' option to image_select, so CSS output element may be specified.
+* Added:    Admin Bar menu for option panel.
+* Modified: media field 'read-only' to 'readonly' to vonform to HTML standards.
+* Modified: Removed raw_align field and added align option to raw field. See wiki for more info.
+* Removed:  EDD extension. It never belonged in Core and will be re-released as a downloadable extension shortly
+* Removed:  Group field, temporarily.
+* Removed:  wp_get_current_user check.  See https://github.com/ReduxFramework/ReduxFramework/wiki/How-to-fix-%22Fatal-error%3A-Call-to-undefined-function-wp_get_current_user%28%29-%22
+
+= 3.1.5 =
+* Typography font arrays may not contain comma spaces.
+* Merge in pull request - 542, code cleanup and better readability
+* Change how HTML is output to support metaboxes
+* CSS only on pages that matter, better checks.
+* font-backup in typography now appends to font-family in output and compiler.
+* More fixes for Google font css outputting.
+* Addded output and compiler to field_image_select.  Images will be output as 'background-image'.
+* Fixed output in field_background.
+* Prevent standard fonts from outputting to Google fonts CSS call.
+* class_exists in field_section checking for incorrect classname.
+* sample_config fix.
+* Compiler not outputting CSS without output set to comthing other than false.
+* Google fonts not rendering on frontend.
+* Rewrote sample_config as a class
 
 = 3.1.4 =
 * Fixed error in redux-framework.php.

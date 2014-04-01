@@ -18,7 +18,7 @@
  * Twitter: http://twitter.com/syamilmj
  * Website: http://aquagraphite.com
  */
-class ReduxFramework_sorter extends ReduxFramework {
+class ReduxFramework_sorter {
 
     /**
      * Field Constructor.
@@ -27,7 +27,6 @@ class ReduxFramework_sorter extends ReduxFramework {
      */
 	function __construct( $field = array(), $value ='', $parent ) {
     
-		//parent::__construct( $parent->sections, $parent->args );
 		$this->parent = $parent;
 		$this->field = $field;
 		$this->value = $value;
@@ -92,19 +91,28 @@ class ReduxFramework_sorter extends ReduxFramework {
 			    if ($sortlists) {
 			    	echo '<fieldset id="'.$this->field['id'].'" class="redux-sorter-container redux-sorter">';
 
-					foreach ($sortlists as $group=>$sortlist) {
+					foreach ( $sortlists as $group => $sortlist ) {
+                        $filled = "";
 
-					    echo '<ul id="'.$this->field['id'].'_'.$group.'" class="sortlist_'.$this->field['id'].'" data-id="'.$this->field['id'].'">';
+                        if ( isset( $this->field['limits'][$group] ) && count( $sortlist ) >= $this->field['limits'][$group] ) {
+                            $filled = " filled";
+                        }
+
+					    echo '<ul id="'.$this->field['id'].'_'.$group.'" class="sortlist_'.$this->field['id'].$filled.'" data-id="'.$this->field['id'].'" data-group-id="' . $group . '">';
 					    echo '<h3>'.$group.'</h3>';
+
+                        if (!isset($sortlist['placebo'])){
+                            array_unshift($sortlist, array( "placebo" => "placebo" ));
+                        }
 
 					    foreach ($sortlist as $key => $list) {
 
-							echo '<input class="sorter-placebo" type="hidden" name="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][' . $group . '][placebo]" value="placebo">';
+							echo '<input class="sorter-placebo" type="hidden" name="' . $this->field['name'] . '[' . $group . '][placebo]' . $this->field['name_suffix'] . '" value="placebo">';
 
 							if ($key != "placebo") {
 
 							    echo '<li id="'.$key.'" class="sortee">';
-							    echo '<input class="position '.$this->field['class'].'" type="hidden" name="' . $this->parent->args['opt_name'] . '[' . $this->field['id'] . '][' . $group . '][' . $key . ']" value="'.$list.'">';
+							    echo '<input class="position '.$this->field['class'].'" type="hidden" name="' . $this->field['name'] . '[' . $group . '][' . $key . ']' . $this->field['name_suffix'] . '" value="'.$list.'">';
 							    echo $list;
 							    echo '</li>';
 
@@ -151,13 +159,18 @@ class ReduxFramework_sorter extends ReduxFramework {
      * @since  Redux_Framework 3.1.5
      * 
      */
-    function localize() {
+    function localize($field, $value = "") {
 
     	$params = array();
     	
-    	if ( isset( $this->field['limits'] ) && !empty( $this->field['limits'] ) ) {
-    		$params = $this->field['limits'];
+    	if ( isset( $field['limits'] ) && !empty( $field['limits'] ) ) {
+    		$params['limits'] = $field['limits'];
     	}
+
+        if ( empty( $value ) ) {
+            $value = $this->value;
+        }       
+        $params['val'] = $value;
 
         return $params;
 

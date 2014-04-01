@@ -24,7 +24,7 @@ if( !defined( 'ABSPATH' ) ) exit;
 // Don't duplicate me!
 if( class_exists( 'ReduxFramework_ace_editor' ) ) return;
 
-class ReduxFramework_ace_editor extends ReduxFramework{ 
+class ReduxFramework_ace_editor { 
 
     /**
      * Field Constructor.
@@ -58,14 +58,12 @@ class ReduxFramework_ace_editor extends ReduxFramework{
             $this->field['theme'] = 'monokai';
         }
 
-        $name = $this->parent->args['opt_name'] . '[' . $this->field['id'] . ']';
-
         ?>
         <div class="ace-wrapper">
-            <textarea name="<?php echo $name; ?>" id="<?php echo $this->field['id']; ?>-textarea" class="ace-editor hide <?php echo $this->field['class']; ?>" data-editor="<?php echo $this->field['id']; ?>-editor" data-mode="<?php echo $this->field['mode']; ?>" data-theme="<?php echo $this->field['theme']; ?>">
+            <textarea name="<?php echo $this->field['name'].$this->field['name_suffix']; ?>" id="<?php echo $this->field['id']; ?>-textarea" class="ace-editor hide <?php echo $this->field['class']; ?>" data-editor="<?php echo $this->field['id']; ?>-editor" data-mode="<?php echo $this->field['mode']; ?>" data-theme="<?php echo $this->field['theme']; ?>">
                 <?php echo $this->value; ?>
             </textarea>
-            <pre id="<?php echo $this->field['id']; ?>-editor" class="ace-editor-area"><?php echo htmlspecialchars ($this->value); ?></pre>
+            <pre id="<?php echo $this->field['id']; ?>-editor" class="ace-editor-area"><?php echo htmlspecialchars( $this->value ); ?></pre>
         </div>
     <?php
         
